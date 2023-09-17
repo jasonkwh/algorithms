@@ -26,10 +26,7 @@ func (n *Node) PrintInDepth() {
 }
 
 func (n *Node) printInDepth(markingNodes []*Node) {
-	contain := false
-	if contains(markingNodes, n) {
-		contain = true
-	}
+	contain := contains(markingNodes, n)
 	markingNodes = append(markingNodes, n)
 	if len(n.Nodes) != 0 && !contain {
 		for _, node := range n.Nodes {
