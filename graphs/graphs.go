@@ -25,6 +25,23 @@ func (n *Node) PrintInDepth() {
 	n.printInDepth(make([]*Node, 0))
 }
 
+func (n *Node) PrintInBreadth() {
+	n.printInBreadth(make([]*Node, 0))
+}
+
+func (n *Node) printInBreadth(markingNodes []*Node) {
+	contain := contains(markingNodes, n)
+	markingNodes = append(markingNodes, n)
+	if len(n.Nodes) != 0 && !contain {
+		for _, node := range n.Nodes {
+			fmt.Printf("%d -> %d\n", n.Value, node.Value)
+		}
+		for _, node := range n.Nodes {
+			node.printInBreadth(markingNodes)
+		}
+	}
+}
+
 func (n *Node) printInDepth(markingNodes []*Node) {
 	contain := contains(markingNodes, n)
 	markingNodes = append(markingNodes, n)
@@ -47,6 +64,7 @@ func contains(nodes []*Node, node *Node) bool {
 	return false
 }
 
+// copied from strings.Join :)
 func join(elems []*Node, sep string) string {
 	switch len(elems) {
 	case 0:

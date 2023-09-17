@@ -25,4 +25,5 @@ func main() {
 	node11 := graphs.CreateNode(11)
 	node4.Connect(node11)
 	node.PrintInDepth()
+	// node.PrintInBreadth()
 }
