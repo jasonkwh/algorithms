@@ -23,8 +23,13 @@ go.work
 # vscode settings
 .vscode
 
-# ignore go vendor
+# ignore go vendor & gradle
 vendor
+.gradle
+gradlew
+gradlew.bat
+gradle/
+build/
 
 *.pprof
 *.trace
