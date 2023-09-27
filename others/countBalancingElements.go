@@ -1,6 +1,7 @@
 package others
 
 import (
+	"runtime"
 	"sync"
 	"sync/atomic"
 )
@@ -33,6 +34,50 @@ func CountBalancingElements(arr []int32) int32 {
 	wg.Wait()
 
 	return count
+}
+
+func CountBalancingElementsSharding(arr []int32) int32 {
+	count := int32(0)
+
+	var wg sync.WaitGroup
+
+	if len(arr) > runtime.NumCPU() {
+		for i := 0; i < runtime.NumCPU(); i++ {
+			wg.Add(1)
+			if i != runtime.NumCPU()-1 {
+				go processChunks(arr[len(arr)/runtime.NumCPU()*i:len(arr)/runtime.NumCPU()*(i+1)], &count, &wg)
+				continue
+			}
+			go processChunks(arr[len(arr)/runtime.NumCPU()*i:], &count, &wg)
+		}
+	} else {
+		wg.Add(1)
+		go processChunks(arr, &count, &wg)
+	}
+
+	wg.Wait()
+
+	return count
+}
+
+func processChunks(arr []int32, count *int32, wg *sync.WaitGroup) {
+	defer wg.Done()
+
+	for i := 0; i < len(arr); i++ {
+		addCount := false
+		if i == 0 {
+			addCount = isBalanced(arr[i+1:])
+		} else if i == len(arr)-1 {
+			addCount = isBalanced(arr[:len(arr)-1])
+		} else {
+			testArr := appendSlice(i, arr)
+			addCount = isBalanced(testArr)
+		}
+
+		if addCount {
+			atomic.AddInt32(count, 1)
+		}
+	}
 }
 
 func appendSlice(index int, arr []int32) []int32 {
