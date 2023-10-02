@@ -18,12 +18,17 @@ func CountBalancingElements(arr []int32) int32 {
 
 			addCount := false
 			if index == 0 {
-				addCount = isBalanced(arr[index+1:])
+				addCount = isBalanced2(arr[index+1:])
 			} else if index == len(arr)-1 {
-				addCount = isBalanced(arr[:len(arr)-1])
+				addCount = isBalanced2(arr[:len(arr)-1])
 			} else {
-				testArr := appendSlice(index, arr)
-				addCount = isBalanced(testArr)
+				// testArr := appendSlice(index, arr)
+				// addCount = isBalanced(testArr)
+
+				testVal := arr[index]
+				arr[index] = -1
+				addCount = isBalanced2(arr)
+				arr[index] = testVal
 			}
 
 			if addCount {
@@ -36,6 +41,7 @@ func CountBalancingElements(arr []int32) int32 {
 	return count
 }
 
+// sharding method: distribute work loads to the threads
 func CountBalancingElementsSharding(arr []int32) int32 {
 	count := int32(0)
 
@@ -80,6 +86,7 @@ func processChunks(arr []int32, count *int32, wg *sync.WaitGroup) {
 	}
 }
 
+// method 1: create new slice
 func appendSlice(index int, arr []int32) []int32 {
 	testArr := make([]int32, len(arr))
 	for i := 0; i < len(arr[:index]); i++ {
@@ -99,6 +106,33 @@ func isBalanced(arr []int32) bool {
 	sumeven, sumodd := int32(0), int32(0)
 	for i := 0; i < len(arr); i++ {
 		if i%2 == 0 {
+			sumeven += arr[i]
+			continue
+		}
+		sumodd += arr[i]
+	}
+	return sumeven == sumodd
+}
+
+// method 2: use existing slice
+// space complexity is better compare to method 1
+func isBalanced2(arr []int32) bool {
+	if len(arr) == 0 {
+		return false
+	}
+
+	skipped := false
+	sumeven, sumodd := int32(0), int32(0)
+	for i := 0; i < len(arr); i++ {
+		index := i
+		if arr[i] == -1 {
+			skipped = true
+			continue
+		}
+		if skipped {
+			index = index - 1
+		}
+		if index%2 == 0 {
 			sumeven += arr[i]
 			continue
 		}
