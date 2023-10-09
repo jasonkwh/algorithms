@@ -9,6 +9,7 @@ import (
 func CountBalancingElements(arr []int32) int32 {
 	count := int32(0)
 	var wg sync.WaitGroup
+	var lock sync.Mutex
 
 	for i := 0; i < len(arr); i++ {
 		wg.Add(1)
@@ -25,10 +26,17 @@ func CountBalancingElements(arr []int32) int32 {
 				// testArr := appendSlice(index, arr)
 				// addCount = isBalanced(testArr)
 
+				lock.Lock()
 				testVal := arr[index]
 				arr[index] = -1
 				addCount = isBalanced2(arr)
 				arr[index] = testVal
+				lock.Unlock()
+
+				// testVal := atomic.LoadInt32(&arr[index])
+				// atomic.StoreInt32(&arr[index], -1)
+				// addCount = isBalanced2(arr)
+				// atomic.StoreInt32(&arr[index], testVal)
 			}
 
 			if addCount {
