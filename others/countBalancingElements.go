@@ -33,6 +33,11 @@ func CountBalancingElements(arr []int32) int32 {
 				arr[index] = testVal
 				lock.Unlock()
 
+				// this method introduces problems...
+				// what happened if arr[index] changed to -1,
+				// while the another goroutine (index+1) took this -1
+				// in isBalanced2 calculation
+				// calculation will be incorrect
 				// testVal := atomic.LoadInt32(&arr[index])
 				// atomic.StoreInt32(&arr[index], -1)
 				// addCount = isBalanced2(arr)
