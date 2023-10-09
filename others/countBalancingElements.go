@@ -9,7 +9,7 @@ import (
 func CountBalancingElements(arr []int32) int32 {
 	count := int32(0)
 	var wg sync.WaitGroup
-	var lock sync.Mutex
+	//var lock sync.Mutex
 
 	for i := 0; i < len(arr); i++ {
 		wg.Add(1)
@@ -23,15 +23,17 @@ func CountBalancingElements(arr []int32) int32 {
 			} else if index == len(arr)-1 {
 				addCount = isBalanced2(arr[:len(arr)-1])
 			} else {
+				// isBalanced version 1
 				// testArr := appendSlice(index, arr)
 				// addCount = isBalanced(testArr)
 
-				lock.Lock()
-				testVal := arr[index]
-				arr[index] = -1
-				addCount = isBalanced2(arr)
-				arr[index] = testVal
-				lock.Unlock()
+				// isBalanced version 2
+				// lock.Lock()
+				// testVal := arr[index]
+				// arr[index] = -1
+				// addCount = isBalanced2(arr)
+				// arr[index] = testVal
+				// lock.Unlock()
 
 				// this method introduces problems...
 				// what happened if arr[index] changed to -1,
@@ -42,6 +44,9 @@ func CountBalancingElements(arr []int32) int32 {
 				// atomic.StoreInt32(&arr[index], -1)
 				// addCount = isBalanced2(arr)
 				// atomic.StoreInt32(&arr[index], testVal)
+
+				// isBalanced version 3
+				addCount = isBalanced3(arr, index)
 			}
 
 			if addCount {
@@ -139,6 +144,33 @@ func isBalanced2(arr []int32) bool {
 	for i := 0; i < len(arr); i++ {
 		index := i
 		if arr[i] == -1 {
+			skipped = true
+			continue
+		}
+		if skipped {
+			index = index - 1
+		}
+		if index%2 == 0 {
+			sumeven += arr[i]
+			continue
+		}
+		sumodd += arr[i]
+	}
+	return sumeven == sumodd
+}
+
+// method 3
+// based on method 2, skip the provided index
+func isBalanced3(arr []int32, skipIndex int) bool {
+	if len(arr) == 0 {
+		return false
+	}
+
+	skipped := false
+	sumeven, sumodd := int32(0), int32(0)
+	for i := 0; i < len(arr); i++ {
+		index := i
+		if i == skipIndex {
 			skipped = true
 			continue
 		}
