@@ -2,10 +2,8 @@ package others
 
 // This is an input class. Do not edit.
 type BinaryTree struct {
-	Value int
-
-	Left  *BinaryTree
-	Right *BinaryTree
+	Value       int
+	Left, Right *BinaryTree
 }
 
 func EvaluateExpressionTree(tree *BinaryTree) int {
