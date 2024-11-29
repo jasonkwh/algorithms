@@ -1,7 +1,7 @@
 package main
 
 import (
-	"algorithms/graphs"
+	"algorithms/oct2023/graphs"
 )
 
 func main() {
