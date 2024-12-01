@@ -1,7 +1,7 @@
 package main
 
 import (
-	addtwonumbers "algorithms/nov2024/add_two_numbers"
+	mediansortedarrays "algorithms/nov2024/median_sorted_arrays"
 	"fmt"
 )
 
@@ -48,41 +48,41 @@ func main() {
 	// 	},
 	// }
 
-	node1 := addtwonumbers.ListNode{
-		Val: 9,
-		Next: &addtwonumbers.ListNode{
-			Val: 9,
-			Next: &addtwonumbers.ListNode{
-				Val: 9,
-				Next: &addtwonumbers.ListNode{
-					Val: 9,
-					Next: &addtwonumbers.ListNode{
-						Val: 9,
-						Next: &addtwonumbers.ListNode{
-							Val: 9,
-							Next: &addtwonumbers.ListNode{
-								Val: 9,
-							},
-						},
-					},
-				},
-			},
-		},
-	}
+	// node1 := addtwonumbers.ListNode{
+	// 	Val: 9,
+	// 	Next: &addtwonumbers.ListNode{
+	// 		Val: 9,
+	// 		Next: &addtwonumbers.ListNode{
+	// 			Val: 9,
+	// 			Next: &addtwonumbers.ListNode{
+	// 				Val: 9,
+	// 				Next: &addtwonumbers.ListNode{
+	// 					Val: 9,
+	// 					Next: &addtwonumbers.ListNode{
+	// 						Val: 9,
+	// 						Next: &addtwonumbers.ListNode{
+	// 							Val: 9,
+	// 						},
+	// 					},
+	// 				},
+	// 			},
+	// 		},
+	// 	},
+	// }
 
-	node2 := addtwonumbers.ListNode{
-		Val: 9,
-		Next: &addtwonumbers.ListNode{
-			Val: 9,
-			Next: &addtwonumbers.ListNode{
-				Val: 9,
-				Next: &addtwonumbers.ListNode{
-					Val: 9,
-				},
-			},
-		},
-	}
+	// node2 := addtwonumbers.ListNode{
+	// 	Val: 9,
+	// 	Next: &addtwonumbers.ListNode{
+	// 		Val: 9,
+	// 		Next: &addtwonumbers.ListNode{
+	// 			Val: 9,
+	// 			Next: &addtwonumbers.ListNode{
+	// 				Val: 9,
+	// 			},
+	// 		},
+	// 	},
+	// }
 
-	node3 := addtwonumbers.AddTwoNumbers(&node1, &node2)
-	fmt.Println(node3)
+	median := mediansortedarrays.FindMedianSortedArrays2([]int{1, 2}, []int{3, 4})
+	fmt.Println(median)
 }
