@@ -1,7 +1,7 @@
 package main
 
 import (
-	mediansortedarrays "algorithms/nov2024/median_sorted_arrays"
+	"algorithms/nov2024/palindrome"
 	"fmt"
 )
 
@@ -83,6 +83,6 @@ func main() {
 	// 	},
 	// }
 
-	median := mediansortedarrays.FindMedianSortedArrays2([]int{1, 2}, []int{3, 4})
-	fmt.Println(median)
+	test := palindrome.LongestPalindrome("ccc")
+	fmt.Println(test)
 }
