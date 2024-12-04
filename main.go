@@ -83,6 +83,6 @@ func main() {
 	// 	},
 	// }
 
-	test := reverseinteger.Reverse(1534236469)
+	test := reverseinteger.Reverse2(1534236469)
 	fmt.Println(test)
 }
