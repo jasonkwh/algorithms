@@ -1,7 +1,7 @@
 package main
 
 import (
-	"algorithms/nov2024/zigzag"
+	reverseinteger "algorithms/nov2024/reverse_integer"
 	"fmt"
 )
 
@@ -83,6 +83,6 @@ func main() {
 	// 	},
 	// }
 
-	test := zigzag.Convert("PAYPALISHIRING", 4)
+	test := reverseinteger.Reverse(1534236469)
 	fmt.Println(test)
 }
