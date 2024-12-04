@@ -2,6 +2,7 @@ package reverseinteger
 
 import (
 	"fmt"
+	"math"
 	"strconv"
 )
 
@@ -24,10 +25,8 @@ func Reverse(x int) int {
 		reversed = reversed * -1
 	}
 
-	temp := int32(reversed)
-
-	if int(temp) != reversed {
-		return 0
+	if reversed > math.MaxInt32 || reversed < math.MinInt32 {
+		return 0 // Return 0 for overflow
 	}
 
 	return reversed
@@ -56,10 +55,8 @@ func Reverse2(x int) int {
 		return 0
 	}
 
-	temp := int32(reversed)
-
-	if int(temp) != reversed {
-		return 0
+	if reversed > math.MaxInt32 || reversed < math.MinInt32 {
+		return 0 // Return 0 for overflow
 	}
 
 	return reversed
