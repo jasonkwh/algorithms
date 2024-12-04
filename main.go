@@ -1,7 +1,7 @@
 package main
 
 import (
-	reverseinteger "algorithms/nov2024/reverse_integer"
+	myatoi "algorithms/nov2024/my_atoi"
 	"fmt"
 )
 
@@ -83,6 +83,6 @@ func main() {
 	// 	},
 	// }
 
-	test := reverseinteger.Reverse(4321)
+	test := myatoi.MyAtoi("   -042")
 	fmt.Println(test)
 }
