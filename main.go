@@ -1,7 +1,7 @@
 package main
 
 import (
-	"algorithms/nov2024/palindrome"
+	"algorithms/nov2024/zigzag"
 	"fmt"
 )
 
@@ -83,6 +83,6 @@ func main() {
 	// 	},
 	// }
 
-	test := palindrome.LongestPalindrome("ccc")
+	test := zigzag.Convert("PAYPALISHIRING", 4)
 	fmt.Println(test)
 }
