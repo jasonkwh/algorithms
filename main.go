@@ -2,87 +2,51 @@ package main
 
 import (
 	myatoi "algorithms/nov2024/my_atoi"
+	"algorithms/nov2024/palindrome"
 	"fmt"
+	"strconv"
+
+	_ "net/http/pprof"
 )
 
 func main() {
-	// node := graphs.CreateNode(1)
-	// node2 := graphs.CreateNode(2)
-	// node8 := graphs.CreateNode(8)
-	// node4 := graphs.CreateNode(4)
-	// node9 := graphs.CreateNode(9)
-	// node.Connect(node2, node8, node4, node9)
-	// node7 := graphs.CreateNode(7)
-	// node5 := graphs.CreateNode(5)
-	// node2.Connect(node7, node5)
-	// node5.Connect(node7)
-	// node7.Connect(node2)
-	// node3 := graphs.CreateNode(3)
-	// node6 := graphs.CreateNode(6)
-	// node3.Connect(node6)
-	// node9.Connect(node4)
-	// node10 := graphs.CreateNode(10)
-	// node9.Connect(node10)
-	// node11 := graphs.CreateNode(11)
-	// node4.Connect(node11)
-	// node.PrintInDepth()
-	// node.PrintInBreadth()
+	// ctx, cancel := context.WithCancel(context.Background())
+	// c := make(chan os.Signal, 1)
+	// signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
 
-	// node1 := addtwonumbers.ListNode{
-	// 	Val: 2,
-	// 	Next: &addtwonumbers.ListNode{
-	// 		Val: 4,
-	// 		Next: &addtwonumbers.ListNode{
-	// 			Val: 3,
-	// 		},
-	// 	},
-	// }
+	// go func() {
+	// 	sig := <-c
+	// 	fmt.Printf("got %s signal", sig)
 
-	// node2 := addtwonumbers.ListNode{
-	// 	Val: 5,
-	// 	Next: &addtwonumbers.ListNode{
-	// 		Val: 6,
-	// 		Next: &addtwonumbers.ListNode{
-	// 			Val: 4,
-	// 		},
-	// 	},
-	// }
+	// 	cancel()
+	// }()
 
-	// node1 := addtwonumbers.ListNode{
-	// 	Val: 9,
-	// 	Next: &addtwonumbers.ListNode{
-	// 		Val: 9,
-	// 		Next: &addtwonumbers.ListNode{
-	// 			Val: 9,
-	// 			Next: &addtwonumbers.ListNode{
-	// 				Val: 9,
-	// 				Next: &addtwonumbers.ListNode{
-	// 					Val: 9,
-	// 					Next: &addtwonumbers.ListNode{
-	// 						Val: 9,
-	// 						Next: &addtwonumbers.ListNode{
-	// 							Val: 9,
-	// 						},
-	// 					},
-	// 				},
-	// 			},
-	// 		},
-	// 	},
-	// }
+	// go func() {
+	// 	log.Fatal(http.ListenAndServe("127.0.0.1:6060", nil))
+	// }()
 
-	// node2 := addtwonumbers.ListNode{
-	// 	Val: 9,
-	// 	Next: &addtwonumbers.ListNode{
-	// 		Val: 9,
-	// 		Next: &addtwonumbers.ListNode{
-	// 			Val: 9,
-	// 			Next: &addtwonumbers.ListNode{
-	// 				Val: 9,
-	// 			},
-	// 		},
-	// 	},
-	// }
+	// go func() {
+	// 	for {
+	// 		test := atoi1("-042")
+	// 		fmt.Println(test)
 
-	test := myatoi.MyAtoi("   -042")
+	// 		test2 := atoi2("-042")
+	// 		fmt.Println(test2)
+	// 	}
+	// }()
+
+	// <-ctx.Done()
+
+	test := palindrome.IsPalindrome(9)
 	fmt.Println(test)
+}
+
+func atoi1(s string) int {
+	return myatoi.MyAtoi(s)
+}
+
+func atoi2(s string) int {
+	val, _ := strconv.Atoi(s)
+
+	return val
 }
