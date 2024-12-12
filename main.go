@@ -2,7 +2,7 @@ package main
 
 import (
 	myatoi "algorithms/nov2024/my_atoi"
-	"algorithms/nov2024/palindrome"
+	regexmatch "algorithms/nov2024/regex_match"
 	"fmt"
 	"strconv"
 
@@ -37,8 +37,11 @@ func main() {
 
 	// <-ctx.Done()
 
-	test := palindrome.IsPalindrome(9)
-	fmt.Println(test)
+	//test := palindrome.IsPalindrome(9)
+	//fmt.Println(test)
+
+	match := regexmatch.IsMatch("aab", "c*a*b")
+	fmt.Println(match)
 }
 
 func atoi1(s string) int {
